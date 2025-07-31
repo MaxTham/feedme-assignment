@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-button-green: #0ecbc4;
-  --color-button-green-hover: #0db7a9;
-  --color-primary-blue:#1074e4;
-  --color-secondary-blue:#16b0d6;
-  --color-primary-dark-blue:#0e1d3c;
+  --color-button-yellow: #f2b80c;
+  --color-button-grey: ##f4f3ef;
   --color-card-grey:#ebeef3;
+  --color-txtBlack:#181611;
 }
