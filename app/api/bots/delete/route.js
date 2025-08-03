@@ -27,7 +27,7 @@ export async function DELETE(request) {
 
     return new Response(JSON.stringify({
       success: true,
-      message: `Bot with botID ${botID} deleted successfully`
+      message: `Bot with Bot ID {${botID}} deleted successfully`
     }), {
       status: 200
     })

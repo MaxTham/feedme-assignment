@@ -25,7 +25,6 @@ function BotCreate({ isOpen, onClose, onSuccess }) {
       if (data.success) {
         setSuccessData(data); // Triggers SuccessModal
         setBotName("");
-        onSuccess(); // Tell parent to refresh BotCard
       } else {
         alert("Failed to create bot.");
       }
@@ -85,6 +84,7 @@ function BotCreate({ isOpen, onClose, onSuccess }) {
           onClose={() => {
             setSuccessData(null); // Clear success message
             onClose(); // Only close after modal is dismissed
+            onSuccess();
           }}
         />
       )}
