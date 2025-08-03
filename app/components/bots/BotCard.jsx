@@ -4,32 +4,32 @@ import React, { useEffect, useState } from "react";
 import SubTitle from "../title/SubTitle";
 import BotItem from "./BotItem";
 
-function BotCard() {
+function BotCard({ refreshTrigger }) {
   const [bots, setBots] = useState([]);
 
-  useEffect(() => {
-    const fetchBots = async () => {
-      try {
-        const url = process.env.NEXT_PUBLIC_API_BASE_URL  + "/api/bots/get";
-        const res = await fetch(url);
-        const data = await res.json();
-        console.log("this is the data: ", data);
-        setBots(data);
-      } catch (err) {
-        console.error("Failed to fetch bots:", err);
-      }
-    };
+  const fetchBots = async () => {
+    try {
+      const res = await fetch("/api/bots/get");
+      const data = await res.json();
+      setBots(data);
+    } catch (err) {
+      console.error("Failed to fetch bots:", err);
+    }
+  };
 
+  useEffect(() => {
     fetchBots();
-  }, []);
+  }, [refreshTrigger]); // refetch when refreshTrigger changes
 
   return (
     <div>
       <SubTitle title="Bots" />
       {bots.length === 0 ? (
-        <p className="text-[#8a8060] text-sm font-normal leading-normal px-4 py-2">
-          Please add bot before adding orders
-        </p>
+        <div className="bg-white px-4 min-h-[72px] py-2">
+          <p className="text-[#8a8060] text-sm font-normal leading-normal">
+            Please add bot before adding orders
+          </p>
+        </div>
       ) : (
         bots.map((bot) => <BotItem key={bot.botID} bot={bot} />)
       )}
