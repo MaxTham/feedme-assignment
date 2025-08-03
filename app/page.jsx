@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from './components/title/Header'
-import ControlCard from './components/cards/ControlCard'
-import OrderCard from './components/cards/OrderCard'
-import BotCard from './components/cards/BotCard'
+import ControlCard from './components/control/ControlCard'
+import OrderCard from './components/control/OrderCard'
+import BotCard from './components/bots/BotCard'
 
 function DashboardPage() {
   return (
