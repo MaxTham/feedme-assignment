@@ -17,3 +17,8 @@ export const deleteBot = async (botID) => {
 
   return res.json();
 };
+
+export const getBot = async () => {
+  const res = await fetch("/api/bots/get");
+  return res.json();
+};
