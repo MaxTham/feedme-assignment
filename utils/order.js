@@ -1,19 +1,19 @@
-export const createVIPOrder = async (botName) => {
-  const res = await fetch("/api/orders/vip/create", {
+export const createOrder = async (orderDetails, orderType) => {
+  const res = await fetch("/api/orders/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ orderDetails }),
+    body: JSON.stringify({ orderDetails, orderType }),
   });
 
   return res.json();
 };
 
-export const createNormalOrder = async (order) => {
-  const res = await fetch("/api/orders/normal/create", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ orderDetails }),
-  });
+export const getPendingOrder = async () => {
+  const res = await fetch("/api/orders/get?orderStatus=Pending");
+  return res.json();
+};
 
+export const getCompleteOrder = async () => {
+  const res = await fetch("/api/orders/get?orderStatus=Complete");
   return res.json();
 };

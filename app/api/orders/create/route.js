@@ -13,7 +13,7 @@ async function getNextOrderID(db) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { orderDetails } = body;
+    const { orderDetails, orderType } = body;
 
     if (!orderDetails) {
       return new Response(JSON.stringify({ error: "Missing order details" }), {
@@ -26,7 +26,6 @@ export async function POST(request) {
     const ordersCollection = db.collection("Orders");
     const orderID = await getNextOrderID(db);
     const orderStatus = "Pending";
-    const orderType = "Normal";
     const result = await ordersCollection.insertOne({
       orderID,
       orderDetails,
