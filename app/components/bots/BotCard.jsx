@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import SubTitle from "../title/SubTitle";
 import BotItem from "./BotItem";
 
-function BotCard({ refreshTrigger }) {
+function BotCard({ botRefreshTrigger }) {
   const [bots, setBots] = useState([]);
 
   const fetchBots = async () => {
@@ -19,7 +19,7 @@ function BotCard({ refreshTrigger }) {
 
   useEffect(() => {
     fetchBots();
-  }, [refreshTrigger]); // refetch when refreshTrigger changes
+  }, [botRefreshTrigger]); // refetch when botRefreshTrigger changes
 
   return (
     <div>

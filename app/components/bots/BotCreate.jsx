@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import SuccessModal from "../modals/SuccessModel";
+import {createBot} from "@/utils/bot";
 
 function BotCreate({ isOpen, onClose, onSuccess }) {
   const [botName, setBotName] = useState("");
@@ -13,15 +14,7 @@ function BotCreate({ isOpen, onClose, onSuccess }) {
     setIsCreating(true);
 
     try {
-      const res = await fetch("/api/bots/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ botName }),
-      });
-
-      const data = await res.json();
+      const data = await createBot(botName);
       if (data.success) {
         setSuccessData(data); // Triggers SuccessModal
         setBotName("");
