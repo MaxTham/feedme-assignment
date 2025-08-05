@@ -61,10 +61,12 @@ function OrderCard({ orderRefreshTrigger, botRefresh }) {
           </p>
         </div>
       ) : (
-        (assignTask(),
-        pendingOrders.map((order) => (
-          <OrderItem key={order.orderID} order={order} />
-        )))
+        assignTask(),
+        <div className="max-h-[200px] overflow-y-auto">
+          {pendingOrders.map((order) => (
+            <OrderItem key={order.orderID} order={order} />
+          ))}
+        </div>
       )}
 
       <SubTitle title="COMPLETED Orders" />
@@ -75,9 +77,11 @@ function OrderCard({ orderRefreshTrigger, botRefresh }) {
           </p>
         </div>
       ) : (
-        completedOrders.map((order) => (
-          <OrderItem key={order.orderID} order={order} />
-        ))
+        <div className="max-h-[200px] overflow-y-auto">
+          {completedOrders.map((order) => (
+            <OrderItem key={order.orderID} order={order} />
+          ))}
+        </div>
       )}
     </div>
   );
