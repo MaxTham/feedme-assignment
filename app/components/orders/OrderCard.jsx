@@ -8,6 +8,7 @@ import {
   getCompleteOrder,
   assignOrder,
   completeOrder,
+  resetOrder,
 } from "@/utils/order";
 
 function OrderCard({ orderRefreshTrigger, botRefresh }) {
@@ -51,6 +52,22 @@ function OrderCard({ orderRefreshTrigger, botRefresh }) {
     assignTask();
   }, [orderRefreshTrigger]);
 
+  useEffect(() => {
+    const handleUnload = async () => {
+      try {
+        await resetOrder(); // ⬅️ Trigger this before session ends
+      } catch (err) {
+        console.error("Failed to reset order:", err);
+      }
+    };
+
+    window.addEventListener("beforeunload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, []);
+
   return (
     <div>
       <SubTitle title="PENDING Orders" />
@@ -61,12 +78,14 @@ function OrderCard({ orderRefreshTrigger, botRefresh }) {
           </p>
         </div>
       ) : (
-        assignTask(),
-        <div className="max-h-[200px] overflow-y-auto">
-          {pendingOrders.map((order) => (
-            <OrderItem key={order.orderID} order={order} />
-          ))}
-        </div>
+        (assignTask(),
+        (
+          <div className="max-h-[200px] overflow-y-auto">
+            {pendingOrders.map((order) => (
+              <OrderItem key={order.orderID} order={order} />
+            ))}
+          </div>
+        ))
       )}
 
       <SubTitle title="COMPLETED Orders" />

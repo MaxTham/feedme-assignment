@@ -5,7 +5,7 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const orderStatus = searchParams.get("orderStatus");
 
-    const allowedStatuses = ["Pending", "Complete"];
+    const allowedStatuses = ["Pending", "Complete", "Processing"];
     if (!allowedStatuses.includes(orderStatus)) {
       return new Response(JSON.stringify({ error: "Invalid orderStatus" }), {
         status: 400,
