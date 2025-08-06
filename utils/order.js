@@ -1,8 +1,8 @@
-export const createOrder = async (orderDetails, orderType) => {
+export const createOrder = async (orderType) => {
   const res = await fetch("/api/orders/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ orderDetails, orderType }),
+    body: JSON.stringify({orderType }),
   });
 
   return res.json();
@@ -33,6 +33,5 @@ export const completeOrder = async (orderID, botID) => {
     headers: { "Content-Type": "application/json" },
      body: JSON.stringify({ orderID, botID }),
   });
-
   return res.json();
 };
