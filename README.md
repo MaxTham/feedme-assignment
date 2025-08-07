@@ -133,3 +133,4 @@ Provides logic for resetting database state
 
 6.**POST /api/orders/reset**<br>
     Reset all orders and bot status
+test
